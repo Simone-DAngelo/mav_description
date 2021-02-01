@@ -35,7 +35,7 @@ for Quadrocopter Control by Jian Wang et al.) -->
   <xacro:property name="arm_height" value="0.06" /> <!-- [m] -->
   <xacro:property name="rotor_offset_top" value="0.01" /> <!-- [m] -->
   <xacro:property name="radius_rotor" value="0.1" /> <!-- [m] -->
-  <xacro:property name="motor_constant" value="0.00019065" /> <!-- [kg.m/s^2] -->
+  <xacro:property name="motor_constant" value="0.00190650" /> <!-- [kg.m/s^2] -->
   <xacro:property name="moment_constant" value="0.000001333" /> <!-- 0.06 [m] -->
   <xacro:property name="time_constant_up" value="0.0125" /> <!-- [s] -->
   <xacro:property name="time_constant_down" value="0.025" /> <!-- [s] -->
@@ -45,7 +45,7 @@ for Quadrocopter Control by Jian Wang et al.) -->
 
 	<xacro:property name="x_rotor" value="0.121"  />
 	<xacro:property name="y_rotor" value="0.121"  />
-	<xacro:property name="z_rotor" value="0.075"  />
+	<xacro:property name="z_rotor" value="0.035"  />
 
  
 	
@@ -111,14 +111,15 @@ for Quadrocopter Control by Jian Wang et al.) -->
       </geometry>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="-0.16832475 0.175539 -0.02"/>
+      <origin rpy="0 0 3.1415" xyz="0.0 0.0 -0.02"/>
       <geometry>
         <mesh filename="$(find mav_description)/meshes/ndt2/arm_4.stl"/>
       </geometry>
     </collision>
   </link>
    <joint name="tilt_motor_4" type="revolute">
-    <origin rpy="0 0 3.1415" xyz="0.16832475 -0.175539 0.04"/>
+    <!--<origin rpy="0 0 3.1415" xyz="0.16832475 -0.175539 0.04"/>-->
+    <origin rpy="0 0 3.1415" xyz="0.0 0.0 0.02"/>
     
     <parent link="base_link"/>
     <child link="arm_4"/>
@@ -134,20 +135,22 @@ for Quadrocopter Control by Jian Wang et al.) -->
       <xacro:insert_block name="arm_inertia" />
     </inertial>
     <visual>
-      <origin rpy="0 0 0" xyz="0.224433 -0.234052 -0.04"/>
+      <!--<origin rpy="0 0 0" xyz="0.224433 -0.234052 -0.04"/>-->
+      <origin rpy="0 0 0" xyz="0.0 -0.0 -0.02"/>
       <geometry>
         <mesh filename="$(find mav_description)/meshes/ndt2/arm_2.stl"/>
       </geometry>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0.224433 -0.234052 -0.04"/>
+      <origin rpy="0 0 0" xyz="0.0 -0.0 -0.02"/>
       <geometry>
         <mesh filename="$(find mav_description)/meshes/ndt2/arm_2.stl"/>
       </geometry>
     </collision>
   </link>
   <joint name="tilt_motor_2" type="revolute">
-    <origin rpy="0 0 0" xyz="-0.224433 0.234052 0.04"/>
+    <!--<origin rpy="0 0 0" xyz="-0.224433 0.234052 0.04"/>-->
+    <origin rpy="0 0 0" xyz="-0.0 0.0 0.02"/>
     <parent link="base_link"/>
     <child link="arm_2"/>
     <axis xyz="-0.707107 0.707107 0.0"/>
@@ -161,14 +164,14 @@ for Quadrocopter Control by Jian Wang et al.) -->
       <xacro:insert_block name="arm_inertia" />
     </inertial>
     <visual>
-      <origin rpy="0 0 0" xyz="0.224433 0.234052 -0.04"/>
+      <origin rpy="0 0 3.1415" xyz="0.0 0.0 -0.02"/>
       <geometry>
         <mesh filename="$(find mav_description)/meshes/ndt2/arm_3.stl"/>
       </geometry>
 
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0.224433 0.234052 -0.04"/>
+      <origin rpy="0 0 3.1415" xyz="0.0 0.0 -0.02"/>
       <geometry>
         <mesh filename="$(find mav_description)/meshes/ndt2/arm_3.stl"/>
       </geometry>
@@ -176,7 +179,7 @@ for Quadrocopter Control by Jian Wang et al.) -->
   </link>
   
    <joint name="tilt_motor_3" type="revolute">
-    <origin rpy="0 0 0" xyz="-0.224433 -0.234052 0.04"/>
+    <origin rpy="0 0 3.1415" xyz="0.0 0.0 0.02"/>
     <parent link="base_link"/>
     <child link="arm_3"/>
     <axis xyz="0.707107 0.707107 0.0"/>
@@ -191,21 +194,21 @@ for Quadrocopter Control by Jian Wang et al.) -->
       <xacro:insert_block name="arm_inertia" />
     </inertial>
     <visual>
-      <origin rpy="0 0 0" xyz="-0.224433 -0.234052 -0.04"/>
+      <origin rpy="0 0 3.1415" xyz="0.0 0.0 -0.02"/>
       <geometry>
         <mesh filename="$(find mav_description)/meshes/ndt2/arm_1.stl"/>
       </geometry>
 
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="-0.224433 -0.234052 -0.04"/>
+      <origin rpy="0 0 3.1415" xyz="0.0 0.0 -0.02"/>
       <geometry>
         <mesh filename="$(find mav_description)/meshes/ndt2/arm_1.stl"/>
       </geometry>
     </collision>
   </link>
  <joint name="tilt_motor_1" type="revolute">
-    <origin rpy="0 0 0" xyz="0.224433 0.234052 0.04"/>
+    <origin rpy="0 0 3.1415" xyz="0.0 0.0 0.02"/>
     <parent link="base_link"/>
     <child link="arm_1"/>
     <axis xyz="-0.707107 -0.707107 0.0"/>
@@ -231,7 +234,8 @@ for Quadrocopter Control by Jian Wang et al.) -->
     mesh_scale="${mesh_scale_prop}"
     color="Red"
     mesh="ndt2/prop.stl">
-    <origin xyz="${x_rotor} -${y_rotor} ${z_rotor}" rpy="0 0 0" />
+    <!--<origin xyz="${x_rotor} -${y_rotor} ${z_rotor}" rpy="0 0 0" />-->
+    <origin xyz="-0.175 0.175 ${z_rotor}" rpy="0 0 0" />
     <xacro:insert_block name="rotor_inertia" />
   </xacro:vertical_rotor>
   
@@ -253,10 +257,10 @@ for Quadrocopter Control by Jian Wang et al.) -->
     mesh_scale="${mesh_scale_prop}"
     color="Blue"
     mesh="ndt2/prop.stl">
-    <origin xyz="-${x_rotor} ${y_rotor} ${z_rotor}" rpy="0 0 0" />
+    <origin xyz="-0.175 0.175 ${z_rotor}" rpy="0 0 0" />
     <xacro:insert_block name="rotor_inertia" />
   </xacro:vertical_rotor>
-  
+
 	 <xacro:vertical_rotor
     robot_namespace="${namespace}"
     suffix="front_left"
@@ -275,10 +279,10 @@ for Quadrocopter Control by Jian Wang et al.) -->
     mesh_scale="${mesh_scale_prop}"
     color="Red"
     mesh="ndt2/prop.stl">
-    <origin xyz="${x_rotor} ${y_rotor} ${z_rotor}" rpy="0 0 0" />
+    <origin xyz="-0.175 -0.175 ${z_rotor}" rpy="0 0 0" />
     <xacro:insert_block name="rotor_inertia" />
   </xacro:vertical_rotor>
-   
+  
 
   <xacro:vertical_rotor
     robot_namespace="${namespace}"
@@ -298,9 +302,8 @@ for Quadrocopter Control by Jian Wang et al.) -->
     mesh_scale="${mesh_scale_prop}"
     color="Blue"
     mesh="ndt2/prop.stl">
-    <origin xyz="-${x_rotor} -${y_rotor} ${z_rotor}" rpy="0 0 0" />
+    <origin xyz="0.175 0.175 ${z_rotor}" rpy="0 0 0" />
     <xacro:insert_block name="rotor_inertia" />
   </xacro:vertical_rotor>
-
 
 </robot>
