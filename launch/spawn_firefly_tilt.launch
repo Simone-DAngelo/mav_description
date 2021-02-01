@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+
+<launch>
+  <arg name="namespace" default="firefly_tilt"/>  
+	<!--
+  <arg name="mav_name" default="firefly"/>
+
+
+  <arg name="tf_prefix" default="$(optenv ROS_NAMESPACE)"/>
+  -->
+  <arg name="model" default="$(find mav_description)/urdf/firefly_tilt/firefly_tilt_base.xacro"/>
+  <arg name="x" default="0.0"/>
+  <arg name="y" default="0.0"/>
+  <arg name="z" default="0.06"/>
+  <arg name="enable_logging" default="false"/>
+  <arg name="enable_ground_truth" default="true"/>
+
+
+  <arg name="wait_to_record_bag" default="false"/>
+  <arg name="enable_mavlink_interface" default="false"/>
+
+  <!-- send the robot XML to param server -->
+  <param name="robot_description" command="
+    $(find xacro)/xacro '$(arg model)'"/>
+  
+  <!--
+  <rosparam file="$(find Aerial_core_description)/launch/controller.yaml" command="load"/>
+  <node args="Rev3_position_controller Rev4_position_controller Rev5_position_controller Rev6_position_controller 
+    Rev7_position_controller Rev8_position_controller joint_state_controller" 
+    name="controller_spawner" 
+    output="screen" pkg="controller_manager" respawn="false" type="spawner"
+  />
+  -->
+  <!--
+  <rosparam file="$(find mav_description)/conf/ndt2.yaml" command="load"/>
+    <node args="tilt_motor_1 tilt_motor_2 tilt_motor_3 tilt_motor_4 joint_state_controller" 
+      name="controller_spawner" output="screen" 
+  		pkg="controller_manager" respawn="false" type="spawner"
+  />
+  -->
+  <node name="spawn_$(arg namespace)" pkg="gazebo_ros" type="spawn_model"
+   args="-param robot_description
+         -urdf
+         -x $(arg x)
+         -y $(arg y)
+         -z $(arg z)
+         -model $(arg namespace)"
+   respawn="false" output="screen"> 
+  </node> 
+ 
+</launch>

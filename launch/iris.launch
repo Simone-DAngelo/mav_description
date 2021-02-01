@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+<launch>
+
+  <arg name="world_name" default="empty"/>
+  <arg name="enable_logging" default="false" />
+  <arg name="enable_ground_truth" default="true" />
+
+
+  <arg name="debug" default="false"/>
+  <arg name="gui" default="true"/>
+  <arg name="paused" default="true"/>
+
+  <!-- The following line causes gzmsg and gzerr messages to be printed to the console
+      (even when Gazebo is started through roslaunch) -->
+  <arg name="verbose" default="true"/>
+  <!--<arg name="rvizconfig" default="$(find quad_control)/drone.rviz" />-->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <!--<arg name="world_name" value="$(find quad_control)/worlds/$(arg world_name).world" />-->
+    <arg name="debug" value="$(arg debug)" />
+    <arg name="paused" value="$(arg paused)" />
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="verbose" value="$(arg verbose)"/>
+  </include>
+	
+    <include file="$(find mav_description)/launch/spawn_iris.launch">
+      <arg name="model" value="$(find mav_description)/urdf/iris_smc/iris_base.xacro" />
+      <arg name="enable_logging" value="$(arg enable_logging)" />
+      <arg name="enable_ground_truth" value="$(arg enable_ground_truth)" />
+
+      <arg name="x" default="0.0"/>
+      <arg name="y" default="0.0"/>
+      <arg name="z" default="0.75"/>
+    </include>
+
+  <!--  
+    <node name="drone_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+    <node name="arm_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" >
+      <remap from="joint_states" to="Aerial_core_controller/joint_states"/>
+      <param name="publish_frequency" type="double" value="200" />
+    </node>
+
+    <node pkg="tf" type="static_transform_publisher" name="maptf" args="0 0 0 0 0 0  world /map  100"/>
+    <node pkg="tf" type="static_transform_publisher" name="wNED" args="0 0 0 1.57079 0 3.14159  world worldNED  100"/>
+   <node pkg="tf" type="static_transform_publisher" name="bodyNED" args="0 0 0 1.57079 0 3.14159  hummingbird/base_link hummingbird/base_linkNED  100"/>
+
+   <arg name="node_start_delay" default="5.0" />
+   <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)"  />
+	-->
+
+</launch>

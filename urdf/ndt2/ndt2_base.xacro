@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!--
+
+	Copyright 2021 Jonathan Cacace, Fabio Pierro, Salvatore Marcellini, Prisma LAB, Naples, Italy
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<robot name="ndt2" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find mav_description)/urdf/component_snippets.xacro" />
+  <xacro:include filename="$(find mav_description)/urdf/ndt2/ndt2.xacro" />
+  
+  <xacro:ros_interface_macro
+	  namespace="${namespace}"
+		odometry_fixed_frame="NED"
+	  motor_size="4" >
+	</xacro:ros_interface_macro>
+	
+  <gazebo>	
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+    </plugin>
+  </gazebo>
+
+  <!--
+  <xacro:include filename="$(find Aerial_core_description)/urdf/Aerial_core.xacro" /> 
+  -->
+  
+  
+</robot>
