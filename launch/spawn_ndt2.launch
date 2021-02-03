@@ -32,7 +32,7 @@
   />
   -->
   <rosparam file="$(find mav_description)/conf/ndt2.yaml" command="load"/>
-    <node args="tilt_motor_1 tilt_motor_2 tilt_motor_3 tilt_motor_4 joint_state_controller" 
+    <node args="joint_state_controller tilt_rotor_0_joint_controller tilt_rotor_1_joint_controller tilt_rotor_2_joint_controller tilt_rotor_3_joint_controller tilt_rotor_4_joint_controller tilt_rotor_5_joint_controller" 
       name="controller_spawner" output="screen" 
   		pkg="controller_manager" respawn="false" type="spawner"
   />
