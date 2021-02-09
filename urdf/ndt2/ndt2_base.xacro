@@ -20,6 +20,8 @@
   <xacro:include filename="$(find mav_description)/urdf/component_snippets.xacro" />
   <xacro:include filename="$(find mav_description)/urdf/ndt2/ndt2.xacro" />
   
+  <xacro:arg name="with_arm" default="false" />
+  
   <xacro:ros_interface_macro
 	  namespace="${namespace}"
 		odometry_fixed_frame="NED"
@@ -31,9 +33,10 @@
     </plugin>
   </gazebo>
 
-  <!--
-  <xacro:include filename="$(find Aerial_core_description)/urdf/Aerial_core.xacro" /> 
-  -->
+  <!---->
+  <xacro:if value="$(arg with_arm)">
+    <xacro:include filename="$(find aerial_arm_description)/urdf/Aerial_core.xacro" /> 
+  </xacro:if>
   
   
 </robot>
