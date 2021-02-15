@@ -32,8 +32,7 @@
   <xacro:arg name='log_file' default='iris' />
 	-->
   <!-- macros for gazebo plugins, sensors--> 
-  <xacro:include filename="$(find mav_description)/urdf/component_snippets.xacro" />
-  
+  <xacro:include filename="$(find mav_description)/urdf/component_snippets.xacro" />  
   <xacro:include filename="$(find mav_description)/urdf/hummingbird/hummingbird.xacro" />
 	
 	<xacro:ros_interface_macro
@@ -41,7 +40,15 @@
 		odometry_fixed_frame="NED"
 	  motor_size="4" >
 	</xacro:ros_interface_macro>
-
+<!---->
+  <gazebo>
+    <plugin filename="libforce_plugin.so" name="force">
+      <debug>1</debug>
+      <body_frame>1</body_frame>
+      <link_name>base_link</link_name>
+      <topic_name>/hummingbird/ft</topic_name>
+    </plugin>
+  </gazebo>
 
 </robot>
 

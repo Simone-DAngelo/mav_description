@@ -16,6 +16,15 @@
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
     </plugin>
   </gazebo>
+	
+	<gazebo>
+    <plugin filename="libforce_plugin.so" name="force">
+      <debug>1</debug>
+      <body_frame>1</body_frame>
+      <link_name>base_link</link_name>
+      <topic_name>/firefly_tilt/ft</topic_name>
+    </plugin>
+  </gazebo>
 
 
 </robot>
