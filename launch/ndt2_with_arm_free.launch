@@ -22,7 +22,7 @@
     <arg name="verbose" value="$(arg verbose)"/>
   </include>
 	  
-    <include file="$(find mav_description)/launch/spawn_ndt2_with_arm.launch">
+    <include file="$(find mav_description)/launch/spawn_ndt2_with_arm_free.launch">
       <arg name="model" value="$(find mav_description)/urdf/ndt2/ndt2_base.xacro" />
       <arg name="enable_logging" value="$(arg enable_logging)" />
       <arg name="enable_ground_truth" value="$(arg enable_ground_truth)" />

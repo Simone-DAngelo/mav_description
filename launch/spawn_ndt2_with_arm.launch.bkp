@@ -15,6 +15,7 @@
   <arg name="enable_logging" default="false"/>
   <arg name="enable_ground_truth" default="true"/>
 
+
   <arg name="wait_to_record_bag" default="false"/>
   <arg name="enable_mavlink_interface" default="false"/>
 
@@ -42,11 +43,8 @@
          -urdf
          -x $(arg x)
          -y $(arg y)
-         -z 0.45
-         -model $(arg namespace)
-         -J Rev3  0
-         -J Rev4  0
-         -J Rev5  1.57"
+         -z $(arg z)
+         -model $(arg namespace)"
    respawn="false" output="screen"> 
   </node> 
  

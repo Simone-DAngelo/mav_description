@@ -32,7 +32,7 @@
   -->
   <rosparam file="$(find mav_description)/conf/ndt2.yaml" command="load"/>
   <rosparam file="$(find aerial_arm_description)/launch/controller.yaml" command="load"/>
-    <node args="joint_state_controller tilt_motor_1 tilt_motor_2 tilt_motor_3 tilt_motor_4 Rev3_position_controller Rev4_position_controller Rev5_position_controller Rev6_position_controller Rev7_position_controller Rev8_position_controller" 
+    <node args="joint_state_controller tilt_motor_1 tilt_motor_2 tilt_motor_3 tilt_motor_4 Rev3_position_controller Rev4_position_controller Rev5_position_controller Rev6_position_controller" 
       name="controller_spawner" output="screen" 
   		pkg="controller_manager" respawn="false" type="spawner"
   />
@@ -42,10 +42,9 @@
          -urdf
          -x $(arg x)
          -y $(arg y)
-         -z 0.45
+         -z 0.75
          -model $(arg namespace)
-         -J Rev3  0
-         -J Rev4  0
+         -J Rev4  -1.57
          -J Rev5  1.57"
    respawn="false" output="screen"> 
   </node> 
