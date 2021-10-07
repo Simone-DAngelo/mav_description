@@ -30,12 +30,24 @@
     output="screen" pkg="controller_manager" respawn="false" type="spawner"
   />
   -->
+  
+  <!--
   <rosparam file="$(find mav_description)/conf/ndt2.yaml" command="load"/>
   <rosparam file="$(find aerial_arm_description)/launch/controller.yaml" command="load"/>
     <node args="joint_state_controller tilt_motor_1 tilt_motor_2 tilt_motor_3 tilt_motor_4 Rev3_position_controller Rev4_position_controller Rev5_position_controller Rev6_position_controller Rev7_position_controller Rev8_position_controller" 
       name="controller_spawner" output="screen" 
   		pkg="controller_manager" respawn="false" type="spawner"
   />
+  
+  -->
+  
+    <rosparam file="$(find mav_description)/conf/ndt2.yaml" command="load"/>
+  <rosparam file="$(find aerial_arm_description)/launch/controller.yaml" command="load"/>
+    <node args="joint_state_controller tilt_motor_1 tilt_motor_2 tilt_motor_3 tilt_motor_4 Rev3_position_controller Rev4_position_controller Rev5_position_controller Rev6_position_controller Rev7_position_controller Rev8_position_controller" 
+      name="controller_spawner" output="screen" 
+  		pkg="controller_manager" respawn="false" type="spawner"
+  />
+  	
   
   <node name="spawn_$(arg namespace)" pkg="gazebo_ros" type="spawn_model"
    args="-param robot_description
