@@ -5,19 +5,19 @@ This package contains different UAV models to simulate with Gazebo. The models u
 
 ## Models
 ### 3DR Iris
-To start the tilting quad use the following launch file:
+To start the iris quadrotor use the following launch file:
 
        $ roslaunch mav_description iris.launch
 ### Hummingbird
-To start the tilting quad use the following launch file:
+To start the hummingbird drone use the following launch file:
 
        $ roslaunch mav_description hummingbird.launch
 ### tilting Firefly
-To start the tilting quad use the following launch file:
+To start the tilting firefly drone use the following launch file:
 
        $ roslaunch mav_description firefly_tilt.launch
 ### Tilting coaxial octarotor
-To start the tilting quad use the following launch file:
+To start the NDT tilting drone use the following launch file:
 
        $ roslaunch mav_description ndt2.launch
   
