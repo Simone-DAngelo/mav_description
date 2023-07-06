@@ -9,9 +9,9 @@
   <arg name="tf_prefix" default="$(optenv ROS_NAMESPACE)"/>
   -->
   <arg name="model" default="$(find mav_description)/urdf/ndt2/ndt2_base.xacro"/>
-  <arg name="x" default="0.0"/>
+  <arg name="x" default="0.5"/>
   <arg name="y" default="0.0"/>
-  <arg name="z" default="0.06"/>
+  <arg name="z" default="0.035"/>
   <arg name="enable_logging" default="false"/>
   <arg name="enable_ground_truth" default="true"/>
 
@@ -42,24 +42,40 @@
   -->
   
     <rosparam file="$(find mav_description)/conf/ndt2.yaml" command="load"/>
-  <rosparam file="$(find aerial_arm_description)/launch/controller.yaml" command="load"/>
+<!--  <rosparam file="$(find aerial_arm_description)/launch/controller.yaml" command="load"/>-->
+    <rosparam file="$(find arm_description)/launch/controller.yaml" command="load"/>
     <node args="joint_state_controller tilt_motor_1 tilt_motor_2 tilt_motor_3 tilt_motor_4 Rev3_position_controller Rev4_position_controller Rev5_position_controller Rev6_position_controller Rev7_position_controller Rev8_position_controller" 
       name="controller_spawner" output="screen" 
   		pkg="controller_manager" respawn="false" type="spawner"
   />
   	
-  
   <node name="spawn_$(arg namespace)" pkg="gazebo_ros" type="spawn_model"
    args="-param robot_description
          -urdf
          -x $(arg x)
          -y $(arg y)
-         -z 0.45
-         -model $(arg namespace)
-         -J Rev3  0
-         -J Rev4  0
-         -J Rev5  1.57"
+         -z 0.192
+         -model $(arg namespace) 
+	  -J Rev3 0.0
+	  -J Rev4 -0.6641131000000002
+	  -J Rev5 1.2584849000000005
+	  -J Rev6 -0.0018849000000003002 
+	  -J Rev7 -0.6169906000000003
+	  -J Rev8 0.0"
    respawn="false" output="screen"> 
   </node> 
- 
+<!-- LAST TEST -->
+<!--	  -J Rev3 0.0-->
+<!--	  -J Rev4 -0.3499631000000001-->
+<!--	  -J Rev5 1.1510456000000002 -->
+<!--	  -J Rev6 0.09989970000000037 -->
+<!--	  -J Rev7 -1.0027668000000003-->
+<!--	  -J Rev8 0.0"-->
+  
+<!-- 	  -J Rev3 0.0-->
+<!--	  -J Rev4 -0.2-->
+<!--	  -J Rev5 0.5-->
+<!--	  -J Rev6 0.1-->
+<!--	  -J Rev7 -1-->
+<!--	  -J Rev8 1.08"-->
 </launch>

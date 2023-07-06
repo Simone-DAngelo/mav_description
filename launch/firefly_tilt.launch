@@ -8,7 +8,7 @@
 
   <arg name="debug" default="false"/>
   <arg name="gui" default="true"/>
-  <arg name="paused" default="true"/>
+  <arg name="paused" default="false"/>
 
   <!-- The following line causes gzmsg and gzerr messages to be printed to the console
       (even when Gazebo is started through roslaunch) -->

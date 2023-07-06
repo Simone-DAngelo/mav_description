@@ -269,7 +269,7 @@ for Quadrocopter Control by Jian Wang et al.) -->
     time_constant_up="${time_constant_up}"
     time_constant_down="${time_constant_down}"
     max_rot_velocity="${max_rot_velocity}"
-    motor_number="2"
+    motor_number="1"
     rotor_drag_coefficient="${rotor_drag_coefficient}"
     rolling_moment_coefficient="${rolling_moment_coefficient}"
     mesh_scale="${mesh_scale_prop}"
@@ -291,7 +291,7 @@ for Quadrocopter Control by Jian Wang et al.) -->
     time_constant_up="${time_constant_up}"
     time_constant_down="${time_constant_down}"
     max_rot_velocity="${max_rot_velocity}"
-    motor_number="1"
+    motor_number="2"
     rotor_drag_coefficient="${rotor_drag_coefficient}"
     rolling_moment_coefficient="${rolling_moment_coefficient}"
     mesh_scale="${mesh_scale_prop}"
@@ -323,105 +323,15 @@ for Quadrocopter Control by Jian Wang et al.) -->
     <origin xyz="0.175 0.175 ${z_rotor}" rpy="0 0 0" />
     <xacro:insert_block name="rotor_inertia" />
   </xacro:vertical_rotor>
-
-<!-- coaxial motors-->
-    <xacro:vertical_rotor
-    robot_namespace="${namespace}"
-    suffix="front_right_down"
-    direction="cw"
-    motor_constant="${motor_constant}"
-    moment_constant="${moment_constant}"
-    parent="arm_4"
-    mass_rotor="${mass_rotor}"
-    radius_rotor="${radius_rotor}"
-    time_constant_up="${time_constant_up}"
-    time_constant_down="${time_constant_down}"
-    max_rot_velocity="${max_rot_velocity}"
-    motor_number="5"
-    rotor_drag_coefficient="${rotor_drag_coefficient}"
-    rolling_moment_coefficient="${rolling_moment_coefficient}"
-    mesh_scale="${mesh_scale_prop}"
-    color="Red"
-    mesh="ndt2/prop.stl">
-    <!--<origin xyz="${x_rotor} -${y_rotor} ${z_rotor}" rpy="0 0 0" />-->
-    <origin xyz="-0.175 0.175 -0.035" rpy="0 0 0" />
-    <xacro:insert_block name="rotor_inertia" />
-  </xacro:vertical_rotor>
   
-  <xacro:vertical_rotor
-    robot_namespace="${namespace}"
-    suffix="rear_left_down"
-    direction="cw"
-    motor_constant="${motor_constant}"
-    moment_constant="${moment_constant}"
-    parent="arm_2"
-    mass_rotor="${mass_rotor}"
-    radius_rotor="${radius_rotor}"
-    time_constant_up="${time_constant_up}"
-    time_constant_down="${time_constant_down}"
-    max_rot_velocity="${max_rot_velocity}"
-    motor_number="7"
-    rotor_drag_coefficient="${rotor_drag_coefficient}"
-    rolling_moment_coefficient="${rolling_moment_coefficient}"
-    mesh_scale="${mesh_scale_prop}"
-    color="Blue"
-    mesh="ndt2/prop.stl">
-    <origin xyz="-0.175 0.175 -0.035" rpy="0 0 0" />
-    <xacro:insert_block name="rotor_inertia" />
-  </xacro:vertical_rotor>
-
-	 <xacro:vertical_rotor
-    robot_namespace="${namespace}"
-    suffix="front_left_down"
-    direction="ccw"
-    motor_constant="${motor_constant}"
-    moment_constant="${moment_constant}"
-    parent="arm_1"
-    mass_rotor="${mass_rotor}"
-    radius_rotor="${radius_rotor}"
-    time_constant_up="${time_constant_up}"
-    time_constant_down="${time_constant_down}"
-    max_rot_velocity="${max_rot_velocity}"
-    motor_number="4"
-    rotor_drag_coefficient="${rotor_drag_coefficient}"
-    rolling_moment_coefficient="${rolling_moment_coefficient}"
-    mesh_scale="${mesh_scale_prop}"
-    color="Red"
-    mesh="ndt2/prop.stl">
-    <origin xyz="-0.175 -0.175 -0.035" rpy="0 0 0" />
-    <xacro:insert_block name="rotor_inertia" />
-  </xacro:vertical_rotor>
+  <xacro:include filename="$(find arm_description)/urdf/aerial_arm.xacro" />
   
-
-  <xacro:vertical_rotor
-    robot_namespace="${namespace}"
-    suffix="rear_right_down"
-    direction="ccw"
-    motor_constant="${motor_constant}"
-    moment_constant="${moment_constant}"
-    parent="arm_3"
-    mass_rotor="${mass_rotor}"
-    radius_rotor="${radius_rotor}"
-    time_constant_up="${time_constant_up}"
-    time_constant_down="${time_constant_down}"
-    max_rot_velocity="${max_rot_velocity}"
-    motor_number="6"
-    rotor_drag_coefficient="${rotor_drag_coefficient}"
-    rolling_moment_coefficient="${rolling_moment_coefficient}"
-    mesh_scale="${mesh_scale_prop}"
-    color="Blue"
-    mesh="ndt2/prop.stl">
-    <origin xyz="0.175 0.175 -0.035" rpy="0 0 0" />
-    <xacro:insert_block name="rotor_inertia" />
-  </xacro:vertical_rotor>
-<!--  -->
-
   <!-- CAMERA SENSOR -->
   
    <link name="camera_link">
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <mass value="0.01"/>
+      <mass value="0.1"/>
       <xacro:insert_block name="arm_inertia" />
     </inertial>
     <visual>
@@ -435,46 +345,13 @@ for Quadrocopter Control by Jian Wang et al.) -->
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0.0 0.0 0"/>
-      <geometry>
-        <box size="0.02 0.02 0.02"/>
-      </geometry>
     </collision>
   </link>
   
    <joint name="camera_joint" type="fixed">
-    <origin rpy="0 0 0.0" xyz="0.085 0.0 0.06"/>
+    <origin rpy="0 0 0.0" xyz="0.085 0.0 0.01"/>
     <parent link="base_link"/>
     <child link="camera_link"/>
-  </joint>  
-<!--      <origin rpy="0 0.25 0.0" xyz="0.085 0.0 0.06"/>-->
-
-     <link name="camerabase_link">
-    <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <mass value="0.01"/>
-      <xacro:insert_block name="arm_inertia" />
-    </inertial>
-    <visual>
-      <origin rpy="0 0 0" xyz="0.0 0.0 0"/>
-      <geometry>
-        <box size="0.06 0.04 0.025"/>
-      </geometry>
-	 <material name="red">
-	  <color rgba="${204/255} ${0/255} ${0/255} 1.0"/>
-	</material>
-    </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="0.0 0.0 0"/>
-      <geometry>
-        <box size="0.06 0.04 0.025"/>
-      </geometry>
-    </collision>
-  </link>
-  
-   <joint name="camerabase_joint" type="fixed">
-    <origin rpy="0 0 0.0" xyz="0.045 0.0 0.0575"/>
-    <parent link="base_link"/>
-    <child link="camerabase_link"/>
   </joint>  
 	
   <gazebo reference="camera_link">
@@ -513,42 +390,5 @@ for Quadrocopter Control by Jian Wang et al.) -->
       </plugin>
     </sensor>
   </gazebo>	
-  
-<!--  <gazebo reference="camera_link">-->
-<!--  	 <sensor type="depth" name="$depth_camera">-->
-<!--        <always_on>true</always_on>-->
-<!--        <update_rate>30.0</update_rate>-->
-<!--        <camera>-->
-<!--          <horizontal_fov>2</horizontal_fov>-->
-<!--          <image>-->
-<!--            <format>R8G8B8</format>-->
-<!--            <width>800</width>-->
-<!--            <height>600</height>-->
-<!--          </image>-->
-<!--          <clip>-->
-<!--            <near>0.01</near>-->
-<!--            <far>100</far>-->
-<!--          </clip>-->
-<!--        </camera>-->
-<!--        <plugin name="depth_camera_plugin" filename="libgazebo_ros_openni_kinect.so">-->
-<!--          <alwaysOn>true</alwaysOn>-->
-<!--          <baseline>0.11</baseline>-->
-<!--          <updateRate>30.0</updateRate>-->
-<!--          <cameraName>depth_camera</cameraName>-->
-<!--          <imageTopicName>depth_camera/image_raw</imageTopicName>-->
-<!--          <cameraInfoTopicName>depth_camera/camera_info</cameraInfoTopicName>-->
-<!--          <depthImageTopicName>depth/disparity</depthImageTopicName>-->
-<!--          <depthImageCameraInfoTopicName>depth/camera_info</depthImageCameraInfoTopicName>-->
-<!--          <pointCloudTopicName>depth/points</pointCloudTopicName>-->
-<!--          <frameName>camera_link</frameName>-->
-<!--          <pointCloudCutoff>0.5</pointCloudCutoff>-->
-<!--          <distortionK1>0.0</distortionK1>-->
-<!--          <distortionK2>0.0</distortionK2>-->
-<!--          <distortionK3>0.0</distortionK3>-->
-<!--          <distortionT1>0.0</distortionT1>-->
-<!--          <distortionT2>0.0</distortionT2>-->
-<!--        </plugin>-->
-<!--      </sensor>-->
-<!--  </gazebo>-->
 
 </robot>

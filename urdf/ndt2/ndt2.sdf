@@ -1,0 +1,1523 @@
+<sdf version='1.7'>
+  <model name='ndt2'>
+    <link name='base_link'>
+      <inertial>
+        <pose>0.00015 -0 -0.00076 0 -0 0</pose>
+        <mass>5.66392</mass>
+        <inertia>
+          <ixx>0.153401</ixx>
+          <ixy>-1.60944e-11</ixy>
+          <ixz>-5.1644e-05</ixz>
+          <iyy>0.153473</iyy>
+          <iyz>-7.24712e-10</iyz>
+          <izz>0.186317</izz>
+        </inertia>
+      </inertial>
+      <collision name='base_link_inertia_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://mav_description/meshes/ndt2/chassis_res.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode>
+              <min_depth>0.001</min_depth>
+              <max_vel>0</max_vel>
+            </ode>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.2</mu>
+              <mu2>0.2</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='base_link_fixed_joint_lump__camera_link_collision_1'>
+        <pose>0.085 0 0.06 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.02 0.02 0.02</size>
+          </box>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='base_link_fixed_joint_lump__arm_base_link_collision_2'>
+        <pose>0.423212 -0.011623 -0.033576 1.5708 0 -1.5708</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://arm_description/meshes/base_link.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='base_link_inertia_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://mav_description/meshes/ndt2/chassis_res.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Grey</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+      <visual name='base_link_fixed_joint_lump__camera_link_visual_1'>
+        <pose>0.085 0 0.06 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.02 0.02 0.02</size>
+          </box>
+        </geometry>
+      </visual>
+      <visual name='base_link_fixed_joint_lump__arm_base_link_visual_2'>
+        <pose>0.423212 -0.011623 -0.033576 1.5708 0 -1.5708</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://arm_description/meshes/base_link.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <gravity>1</gravity>
+      <self_collide>1</self_collide>
+      <gravity>1</gravity>
+      <sensor name='camera1' type='camera'>
+        <update_rate>30</update_rate>
+        <camera name='head'>
+          <horizontal_fov>1.39626</horizontal_fov>
+          <image>
+            <width>800</width>
+            <height>600</height>
+            <format>R8G8B8</format>
+          </image>
+          <clip>
+            <near>0.02</near>
+            <far>300</far>
+          </clip>
+          <noise>
+            <type>gaussian</type>
+            <mean>0</mean>
+            <stddev>0.007</stddev>
+          </noise>
+        </camera>
+        <plugin name='camera_controller' filename='libgazebo_ros_camera.so'>
+          <alwaysOn>1</alwaysOn>
+          <updateRate>0.0</updateRate>
+          <cameraName>/camera</cameraName>
+          <imageTopicName>image_raw</imageTopicName>
+          <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+          <frameName>camera_link</frameName>
+          <hackBaseline>0.07</hackBaseline>
+          <distortionK1>0.0</distortionK1>
+          <distortionK2>0.0</distortionK2>
+          <distortionK3>0.0</distortionK3>
+          <distortionT1>0.0</distortionT1>
+          <distortionT2>0.0</distortionT2>
+        </plugin>
+        <pose>0.085 0 0.06 0 -0 0</pose>
+      </sensor>
+    </link>
+    <joint name='Rev3' type='revolute'>
+      <pose relative_to='base_link'>0 0 0 1.5708 0 -1.5708</pose>
+      <parent>base_link</parent>
+      <child>shoulder_2_1</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-0.785375</lower>
+          <upper>0.785375</upper>
+          <effort>5</effort>
+          <velocity>1.57</velocity>
+        </limit>
+        <dynamics>
+          <damping>0</damping>
+          <friction>0.05</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='shoulder_2_1'>
+      <pose relative_to='Rev3'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-7e-06 -0.032724 8e-06 0 -0 0</pose>
+        <mass>0.18907</mass>
+        <inertia>
+          <ixx>8.7e-05</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>8.1e-05</iyy>
+          <iyz>0</iyz>
+          <izz>6.5e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='shoulder_2_1_collision'>
+        <pose>0.011623 -0.033576 -0.423212 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://arm_description/meshes/shoulder_2_1.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode>
+              <kp>1e+06</kp>
+              <kd>1000</kd>
+              <max_vel>0</max_vel>
+              <min_depth>0.001</min_depth>
+            </ode>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.8</mu>
+              <mu2>0.8</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='shoulder_2_1_visual'>
+        <pose>0.011623 -0.033576 -0.423212 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://arm_description/meshes/shoulder_2_1.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Grey</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+      <self_collide>1</self_collide>
+    </link>
+    <joint name='Rev4' type='revolute'>
+      <pose relative_to='shoulder_2_1'>-0.01 -0.035 0 0 -0 0</pose>
+      <parent>shoulder_2_1</parent>
+      <child>first_Link_200_1</child>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <limit>
+          <lower>-3.1415</lower>
+          <upper>3.1415</upper>
+          <effort>5</effort>
+          <velocity>1.57</velocity>
+        </limit>
+        <dynamics>
+          <damping>0</damping>
+          <friction>0.05</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='first_Link_200_1'>
+      <pose relative_to='Rev4'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.01 0 -0.1 0 -0 0</pose>
+        <mass>0.0411104</mass>
+        <inertia>
+          <ixx>0.000248</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.000248</iyy>
+          <iyz>0</iyz>
+          <izz>3e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='first_Link_200_1_collision'>
+        <pose>0.021623 0.001424 -0.423212 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://arm_description/meshes/first_Link_200_1.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.2</mu>
+              <mu2>0.2</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='first_Link_200_1_visual'>
+        <pose>0.021623 0.001424 -0.423212 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://arm_description/meshes/first_Link_200_1.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Grey</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+      <self_collide>1</self_collide>
+    </link>
+    <joint name='Rev5' type='revolute'>
+      <pose relative_to='first_Link_200_1'>-0.02 0 -0.2 0 -0 0</pose>
+      <parent>first_Link_200_1</parent>
+      <child>second_Link_200__1__1</child>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <limit>
+          <lower>-3.1415</lower>
+          <upper>3.1415</upper>
+          <effort>5</effort>
+          <velocity>1.57</velocity>
+        </limit>
+        <dynamics>
+          <damping>0</damping>
+          <friction>0.05</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='second_Link_200__1__1'>
+      <pose relative_to='Rev5'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.01 0 -0.070706 0 -0 0</pose>
+        <mass>0.0317752</mass>
+        <inertia>
+          <ixx>0.000128</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.000128</iyy>
+          <iyz>0</iyz>
+          <izz>2e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='second_Link_200__1__1_collision'>
+        <pose>0.041623 0.001424 -0.223212 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://arm_description/meshes/second_Link_200__1__1.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.2</mu>
+              <mu2>0.2</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='second_Link_200__1__1_visual'>
+        <pose>0.041623 0.001424 -0.223212 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://arm_description/meshes/second_Link_200__1__1.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Grey</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+      <self_collide>1</self_collide>
+    </link>
+    <joint name='Rev6' type='revolute'>
+      <pose relative_to='second_Link_200__1__1'>0.01 0 -0.19 0 -0 0</pose>
+      <parent>second_Link_200__1__1</parent>
+      <child>Yaw_1</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-3.1415</lower>
+          <upper>3.1415</upper>
+          <effort>5</effort>
+          <velocity>1.57</velocity>
+        </limit>
+        <dynamics>
+          <damping>0</damping>
+          <friction>0.0025</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='Yaw_1'>
+      <pose relative_to='Rev6'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0 0 -0.009713 0 -0 0</pose>
+        <mass>0.0193353</mass>
+        <inertia>
+          <ixx>0</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1e-06</iyy>
+          <iyz>0</iyz>
+          <izz>1e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='Yaw_1_collision'>
+        <pose>0.031623 0.001424 -0.033212 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://arm_description/meshes/Yaw_1.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.2</mu>
+              <mu2>0.2</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='Yaw_1_visual'>
+        <pose>0.031623 0.001424 -0.033212 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://arm_description/meshes/Yaw_1.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Grey</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+      <self_collide>1</self_collide>
+    </link>
+    <joint name='Rev7' type='revolute'>
+      <pose relative_to='Yaw_1'>-0.012 0 -0.01 0 -0 0</pose>
+      <parent>Yaw_1</parent>
+      <child>Pitch_1</child>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <limit>
+          <lower>-3.1415</lower>
+          <upper>3.1415</upper>
+          <effort>5</effort>
+          <velocity>1.57</velocity>
+        </limit>
+        <dynamics>
+          <damping>0</damping>
+          <friction>0.0025</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='Pitch_1'>
+      <pose relative_to='Rev7'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.012 0 -0.007306 0 -0 0</pose>
+        <mass>0.0173701</mass>
+        <inertia>
+          <ixx>1e-06</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1e-06</iyy>
+          <iyz>0</iyz>
+          <izz>1e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='Pitch_1_collision'>
+        <pose>0.043623 0.001424 -0.023212 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://arm_description/meshes/Pitch_1.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.2</mu>
+              <mu2>0.2</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='Pitch_1_visual'>
+        <pose>0.043623 0.001424 -0.023212 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://arm_description/meshes/Pitch_1.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Grey</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+      <self_collide>1</self_collide>
+    </link>
+    <joint name='Rev8' type='revolute'>
+      <pose relative_to='Pitch_1'>0.012 0 -0.032022 0 -0 0</pose>
+      <parent>Pitch_1</parent>
+      <child>Roll_1</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>-3.1415</lower>
+          <upper>3.1415</upper>
+          <effort>5</effort>
+          <velocity>1.57</velocity>
+        </limit>
+        <dynamics>
+          <damping>0</damping>
+          <friction>0.0025</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='Roll_1'>
+      <pose relative_to='Rev8'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0 0 0.0075 0 -0 0</pose>
+        <mass>0.0167387</mass>
+        <inertia>
+          <ixx>1e-06</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1e-06</iyy>
+          <iyz>0</iyz>
+          <izz>1e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='Roll_1_collision'>
+        <pose>0.031623 0.001424 0.00881 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://arm_description/meshes/Roll_1.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.2</mu>
+              <mu2>0.2</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='Roll_1_visual'>
+        <pose>0.031623 0.001424 0.00881 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://arm_description/meshes/Roll_1.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/SkyBlue</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+      <self_collide>1</self_collide>
+      <sensor name='contact_sensor' type='contact'>
+        <always_on>1</always_on>
+        <contact>
+          <collision>Probe_collision</collision>
+          <topic>__default_topic__</topic>
+        </contact>
+        <plugin name='force_sensor' filename='libgazebo_ros_bumper.so'>
+          <bumperTopicName>/prisma_snake/ft_sensor</bumperTopicName>
+          <frameName>Probe</frameName>
+        </plugin>
+      </sensor>
+    </link>
+    <joint name='tilt_motor_1' type='revolute'>
+      <pose relative_to='base_link'>0 0 0.02 0 -0 3.1415</pose>
+      <parent>base_link</parent>
+      <child>arm_1</child>
+      <axis>
+        <xyz>-0.707107 -0.707107 0</xyz>
+        <limit>
+          <lower>-1.57</lower>
+          <upper>1.57</upper>
+          <effort>30</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='arm_1'>
+      <pose relative_to='tilt_motor_1'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.083 0.083 0 0 -0 0</pose>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.000993333</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.000993333</iyy>
+          <iyz>0</iyz>
+          <izz>0.00192667</izz>
+        </inertia>
+      </inertial>
+      <collision name='arm_1_collision'>
+        <pose>0 0 -0.02 0 -0 3.1415</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>/home/simone/uav_ws/src/mav_description/meshes/ndt2/arm_1.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.2</mu>
+              <mu2>0.2</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='arm_1_visual'>
+        <pose>0 0 -0.02 0 -0 3.1415</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>/home/simone/uav_ws/src/mav_description/meshes/ndt2/arm_1.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>DarkGrey</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+      <self_collide>1</self_collide>
+    </link>
+    <joint name='rotor_1_joint' type='revolute'>
+      <pose relative_to='arm_1'>-0.175 -0.175 0.035 0 -0 0</pose>
+      <parent>arm_1</parent>
+      <child>rotor_1</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='rotor_1'>
+      <pose relative_to='rotor_1_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 -0 0</pose>
+        <mass>0.001</mass>
+        <inertia>
+          <ixx>1.95e-06</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.000546208</iyy>
+          <iyz>0</iyz>
+          <izz>0.000548008</izz>
+        </inertia>
+      </inertial>
+      <collision name='rotor_1_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.005</length>
+            <radius>0.128</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='rotor_1_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://mav_description/meshes/ndt2/prop.stl_cw.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Red</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+    </link>
+    <joint name='rotor_4_joint' type='revolute'>
+      <pose relative_to='arm_1'>-0.175 -0.175 -0.035 0 -0 0</pose>
+      <parent>arm_1</parent>
+      <child>rotor_4</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='rotor_4'>
+      <pose relative_to='rotor_4_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 -0 0</pose>
+        <mass>0.001</mass>
+        <inertia>
+          <ixx>1.95e-06</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.000546208</iyy>
+          <iyz>0</iyz>
+          <izz>0.000548008</izz>
+        </inertia>
+      </inertial>
+      <collision name='rotor_4_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.005</length>
+            <radius>0.128</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='rotor_4_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://mav_description/meshes/ndt2/prop.stl_ccw.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Red</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+    </link>
+    <joint name='tilt_motor_2' type='revolute'>
+      <pose relative_to='base_link'>0 0 0.02 0 -0 0</pose>
+      <parent>base_link</parent>
+      <child>arm_2</child>
+      <axis>
+        <xyz>-0.707107 0.707107 0</xyz>
+        <limit>
+          <lower>-1.57</lower>
+          <upper>1.57</upper>
+          <effort>30</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='arm_2'>
+      <pose relative_to='tilt_motor_2'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.083 0.083 0 0 -0 0</pose>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.000993333</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.000993333</iyy>
+          <iyz>0</iyz>
+          <izz>0.00192667</izz>
+        </inertia>
+      </inertial>
+      <collision name='arm_2_collision'>
+        <pose>0 0 -0.02 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>/home/simone/uav_ws/src/mav_description/meshes/ndt2/arm_2.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.2</mu>
+              <mu2>0.2</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='arm_2_visual'>
+        <pose>0 0 -0.02 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>/home/simone/uav_ws/src/mav_description/meshes/ndt2/arm_2.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>DarkGrey</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+      <self_collide>1</self_collide>
+    </link>
+    <joint name='rotor_2_joint' type='revolute'>
+      <pose relative_to='arm_2'>-0.175 0.175 0.035 0 -0 0</pose>
+      <parent>arm_2</parent>
+      <child>rotor_2</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='rotor_2'>
+      <pose relative_to='rotor_2_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 -0 0</pose>
+        <mass>0.001</mass>
+        <inertia>
+          <ixx>1.95e-06</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.000546208</iyy>
+          <iyz>0</iyz>
+          <izz>0.000548008</izz>
+        </inertia>
+      </inertial>
+      <collision name='rotor_2_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.005</length>
+            <radius>0.128</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='rotor_2_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://mav_description/meshes/ndt2/prop.stl_ccw.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Blue</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+    </link>
+    <joint name='rotor_7_joint' type='revolute'>
+      <pose relative_to='arm_2'>-0.175 0.175 -0.035 0 -0 0</pose>
+      <parent>arm_2</parent>
+      <child>rotor_7</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='rotor_7'>
+      <pose relative_to='rotor_7_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 -0 0</pose>
+        <mass>0.001</mass>
+        <inertia>
+          <ixx>1.95e-06</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.000546208</iyy>
+          <iyz>0</iyz>
+          <izz>0.000548008</izz>
+        </inertia>
+      </inertial>
+      <collision name='rotor_7_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.005</length>
+            <radius>0.128</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='rotor_7_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://mav_description/meshes/ndt2/prop.stl_cw.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Blue</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+    </link>
+    <joint name='tilt_motor_3' type='revolute'>
+      <pose relative_to='base_link'>0 0 0.02 0 -0 3.1415</pose>
+      <parent>base_link</parent>
+      <child>arm_3</child>
+      <axis>
+        <xyz>0.707107 0.707107 0</xyz>
+        <limit>
+          <lower>-1.57</lower>
+          <upper>1.57</upper>
+          <effort>30</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='arm_3'>
+      <pose relative_to='tilt_motor_3'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.083 -0.083 0 0 -0 0</pose>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.000993333</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.000993333</iyy>
+          <iyz>0</iyz>
+          <izz>0.00192667</izz>
+        </inertia>
+      </inertial>
+      <collision name='arm_3_collision'>
+        <pose>0 0 -0.02 0 -0 3.1415</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>/home/simone/uav_ws/src/mav_description/meshes/ndt2/arm_3.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.2</mu>
+              <mu2>0.2</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='arm_3_visual'>
+        <pose>0 0 -0.02 0 -0 3.1415</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>/home/simone/uav_ws/src/mav_description/meshes/ndt2/arm_3.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>DarkGrey</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+      <self_collide>1</self_collide>
+    </link>
+    <joint name='rotor_3_joint' type='revolute'>
+      <pose relative_to='arm_3'>0.175 0.175 0.035 0 -0 0</pose>
+      <parent>arm_3</parent>
+      <child>rotor_3</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='rotor_3'>
+      <pose relative_to='rotor_3_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 -0 0</pose>
+        <mass>0.001</mass>
+        <inertia>
+          <ixx>1.95e-06</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.000546208</iyy>
+          <iyz>0</iyz>
+          <izz>0.000548008</izz>
+        </inertia>
+      </inertial>
+      <collision name='rotor_3_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.005</length>
+            <radius>0.128</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='rotor_3_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://mav_description/meshes/ndt2/prop.stl_cw.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Blue</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+    </link>
+    <joint name='rotor_6_joint' type='revolute'>
+      <pose relative_to='arm_3'>0.175 0.175 -0.035 0 -0 0</pose>
+      <parent>arm_3</parent>
+      <child>rotor_6</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='rotor_6'>
+      <pose relative_to='rotor_6_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 -0 0</pose>
+        <mass>0.001</mass>
+        <inertia>
+          <ixx>1.95e-06</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.000546208</iyy>
+          <iyz>0</iyz>
+          <izz>0.000548008</izz>
+        </inertia>
+      </inertial>
+      <collision name='rotor_6_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.005</length>
+            <radius>0.128</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='rotor_6_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://mav_description/meshes/ndt2/prop.stl_ccw.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Blue</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+    </link>
+    <joint name='tilt_motor_4' type='revolute'>
+      <pose relative_to='base_link'>0 0 0.02 0 -0 3.1415</pose>
+      <parent>base_link</parent>
+      <child>arm_4</child>
+      <axis>
+        <xyz>-0.707107 0.707107 0</xyz>
+        <limit>
+          <lower>-1.57</lower>
+          <upper>1.57</upper>
+          <effort>30</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='arm_4'>
+      <pose relative_to='tilt_motor_4'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.083 -0.083 0 0 -0 0</pose>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.000993333</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.000993333</iyy>
+          <iyz>0</iyz>
+          <izz>0.00192667</izz>
+        </inertia>
+      </inertial>
+      <collision name='arm_4_collision'>
+        <pose>0 0 -0.02 0 -0 3.1415</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>/home/simone/uav_ws/src/mav_description/meshes/ndt2/arm_4.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.2</mu>
+              <mu2>0.2</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='arm_4_visual'>
+        <pose>0 0 -0.02 0 -0 3.1415</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>/home/simone/uav_ws/src/mav_description/meshes/ndt2/arm_4.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>DarkGrey</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+      <self_collide>1</self_collide>
+    </link>
+    <joint name='rotor_0_joint' type='revolute'>
+      <pose relative_to='arm_4'>-0.175 0.175 0.035 0 -0 0</pose>
+      <parent>arm_4</parent>
+      <child>rotor_0</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='rotor_0'>
+      <pose relative_to='rotor_0_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 -0 0</pose>
+        <mass>0.001</mass>
+        <inertia>
+          <ixx>1.95e-06</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.000546208</iyy>
+          <iyz>0</iyz>
+          <izz>0.000548008</izz>
+        </inertia>
+      </inertial>
+      <collision name='rotor_0_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.005</length>
+            <radius>0.128</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='rotor_0_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://mav_description/meshes/ndt2/prop.stl_ccw.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Red</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+    </link>
+    <joint name='rotor_5_joint' type='revolute'>
+      <pose relative_to='arm_4'>-0.175 0.175 -0.035 0 -0 0</pose>
+      <parent>arm_4</parent>
+      <child>rotor_5</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='rotor_5'>
+      <pose relative_to='rotor_5_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 -0 0</pose>
+        <mass>0.001</mass>
+        <inertia>
+          <ixx>1.95e-06</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.000546208</iyy>
+          <iyz>0</iyz>
+          <izz>0.000548008</izz>
+        </inertia>
+      </inertial>
+      <collision name='rotor_5_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.005</length>
+            <radius>0.128</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='rotor_5_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://mav_description/meshes/ndt2/prop.stl_cw.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Red</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+    </link>
+    <plugin name='rosbag' filename='librotors_gazebo_multirotor_base_plugin.so'>
+      <robotNamespace>ndt2</robotNamespace>
+      <linkName>base_link</linkName>
+      <rotorVelocitySlowdownSim>100</rotorVelocitySlowdownSim>
+    </plugin>
+    <plugin name='front_right_motor_model' filename='librotors_gazebo_motor_model.so'>
+      <robotNamespace>ndt2</robotNamespace>
+      <jointName>rotor_0_joint</jointName>
+      <linkName>rotor_0</linkName>
+      <turningDirection>ccw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>1100</maxRotVelocity>
+      <motorConstant>8.54858e-05</motorConstant>
+      <momentConstant>0.06</momentConstant>
+      <commandSubTopic>/gazebo/command/motor_speed</commandSubTopic>
+      <motorNumber>0</motorNumber>
+      <rotorDragCoefficient>0.000175</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <motorSpeedPubTopic>/motor_speed/0</motorSpeedPubTopic>
+      <rotorVelocitySlowdownSim>100</rotorVelocitySlowdownSim>
+    </plugin>
+    <plugin name='rear_left_motor_model' filename='librotors_gazebo_motor_model.so'>
+      <robotNamespace>ndt2</robotNamespace>
+      <jointName>rotor_2_joint</jointName>
+      <linkName>rotor_2</linkName>
+      <turningDirection>ccw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>1100</maxRotVelocity>
+      <motorConstant>8.54858e-05</motorConstant>
+      <momentConstant>0.06</momentConstant>
+      <commandSubTopic>/gazebo/command/motor_speed</commandSubTopic>
+      <motorNumber>2</motorNumber>
+      <rotorDragCoefficient>0.000175</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <motorSpeedPubTopic>/motor_speed/2</motorSpeedPubTopic>
+      <rotorVelocitySlowdownSim>100</rotorVelocitySlowdownSim>
+    </plugin>
+    <plugin name='front_left_motor_model' filename='librotors_gazebo_motor_model.so'>
+      <robotNamespace>ndt2</robotNamespace>
+      <jointName>rotor_1_joint</jointName>
+      <linkName>rotor_1</linkName>
+      <turningDirection>cw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>1100</maxRotVelocity>
+      <motorConstant>8.54858e-05</motorConstant>
+      <momentConstant>0.06</momentConstant>
+      <commandSubTopic>/gazebo/command/motor_speed</commandSubTopic>
+      <motorNumber>1</motorNumber>
+      <rotorDragCoefficient>0.000175</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <motorSpeedPubTopic>/motor_speed/1</motorSpeedPubTopic>
+      <rotorVelocitySlowdownSim>100</rotorVelocitySlowdownSim>
+    </plugin>
+    <plugin name='rear_right_motor_model' filename='librotors_gazebo_motor_model.so'>
+      <robotNamespace>ndt2</robotNamespace>
+      <jointName>rotor_3_joint</jointName>
+      <linkName>rotor_3</linkName>
+      <turningDirection>cw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>1100</maxRotVelocity>
+      <motorConstant>8.54858e-05</motorConstant>
+      <momentConstant>0.06</momentConstant>
+      <commandSubTopic>/gazebo/command/motor_speed</commandSubTopic>
+      <motorNumber>3</motorNumber>
+      <rotorDragCoefficient>0.000175</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <motorSpeedPubTopic>/motor_speed/3</motorSpeedPubTopic>
+      <rotorVelocitySlowdownSim>100</rotorVelocitySlowdownSim>
+    </plugin>
+    <plugin name='front_right_down_motor_model' filename='librotors_gazebo_motor_model.so'>
+      <robotNamespace>ndt2</robotNamespace>
+      <jointName>rotor_5_joint</jointName>
+      <linkName>rotor_5</linkName>
+      <turningDirection>cw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>1100</maxRotVelocity>
+      <motorConstant>8.54858e-05</motorConstant>
+      <momentConstant>0.06</momentConstant>
+      <commandSubTopic>/gazebo/command/motor_speed</commandSubTopic>
+      <motorNumber>5</motorNumber>
+      <rotorDragCoefficient>0.000175</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <motorSpeedPubTopic>/motor_speed/5</motorSpeedPubTopic>
+      <rotorVelocitySlowdownSim>100</rotorVelocitySlowdownSim>
+    </plugin>
+    <plugin name='rear_left_down_motor_model' filename='librotors_gazebo_motor_model.so'>
+      <robotNamespace>ndt2</robotNamespace>
+      <jointName>rotor_7_joint</jointName>
+      <linkName>rotor_7</linkName>
+      <turningDirection>cw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>1100</maxRotVelocity>
+      <motorConstant>8.54858e-05</motorConstant>
+      <momentConstant>0.06</momentConstant>
+      <commandSubTopic>/gazebo/command/motor_speed</commandSubTopic>
+      <motorNumber>7</motorNumber>
+      <rotorDragCoefficient>0.000175</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <motorSpeedPubTopic>/motor_speed/7</motorSpeedPubTopic>
+      <rotorVelocitySlowdownSim>100</rotorVelocitySlowdownSim>
+    </plugin>
+    <plugin name='front_left_down_motor_model' filename='librotors_gazebo_motor_model.so'>
+      <robotNamespace>ndt2</robotNamespace>
+      <jointName>rotor_4_joint</jointName>
+      <linkName>rotor_4</linkName>
+      <turningDirection>ccw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>1100</maxRotVelocity>
+      <motorConstant>8.54858e-05</motorConstant>
+      <momentConstant>0.06</momentConstant>
+      <commandSubTopic>/gazebo/command/motor_speed</commandSubTopic>
+      <motorNumber>4</motorNumber>
+      <rotorDragCoefficient>0.000175</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <motorSpeedPubTopic>/motor_speed/4</motorSpeedPubTopic>
+      <rotorVelocitySlowdownSim>100</rotorVelocitySlowdownSim>
+    </plugin>
+    <plugin name='rear_right_down_motor_model' filename='librotors_gazebo_motor_model.so'>
+      <robotNamespace>ndt2</robotNamespace>
+      <jointName>rotor_6_joint</jointName>
+      <linkName>rotor_6</linkName>
+      <turningDirection>ccw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>1100</maxRotVelocity>
+      <motorConstant>8.54858e-05</motorConstant>
+      <momentConstant>0.06</momentConstant>
+      <commandSubTopic>/gazebo/command/motor_speed</commandSubTopic>
+      <motorNumber>6</motorNumber>
+      <rotorDragCoefficient>0.000175</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <motorSpeedPubTopic>/motor_speed/6</motorSpeedPubTopic>
+      <rotorVelocitySlowdownSim>100</rotorVelocitySlowdownSim>
+    </plugin>
+    <plugin name='ros_interface' filename='libgazebo_ros_interface.so'>
+      <robotNamespace>ndt2</robotNamespace>
+      <odomFrame>NED</odomFrame>
+      <motorSize>8</motorSize>
+      <motorSpeedCommandPubTopic>/gazebo/command/motor_speed</motorSpeedCommandPubTopic>
+    </plugin>
+    <plugin name='gazebo_ros_control' filename='libgazebo_ros_control.so'/>
+    <frame name='base_joint' attached_to='base_link'>
+      <pose>0 0 0 0 -0 0</pose>
+    </frame>
+    <frame name='base_link_inertia' attached_to='base_joint'/>
+    <frame name='camera_joint' attached_to='base_link'>
+      <pose>0.085 0 0.06 0 -0 0</pose>
+    </frame>
+    <frame name='camera_link' attached_to='camera_joint'/>
+    <frame name='base_arm_joint' attached_to='orientation_link'>
+      <pose>0.011623 -0.033576 -0.423212 0 -0 0</pose>
+    </frame>
+    <frame name='arm_base_link' attached_to='base_arm_joint'/>
+    <static>0</static>
+    <frame name='orientation_joint' attached_to='base_link'>
+      <pose>0 0 0 1.5708 0 -1.5708</pose>
+    </frame>
+    <frame name='orientation_link' attached_to='orientation_joint'/>
+  </model>
+</sdf>

@@ -1,0 +1,59 @@
+digraph G {
+node [shape=box];
+"base_link" [label="base_link"];
+"base_link_inertia" [label="base_link_inertia"];
+"camera_link" [label="camera_link"];
+"orientation_link" [label="orientation_link"];
+"arm_base_link" [label="arm_base_link"];
+"shoulder_2_1" [label="shoulder_2_1"];
+"first_Link_200_1" [label="first_Link_200_1"];
+"second_Link_200__1__1" [label="second_Link_200__1__1"];
+"Yaw_1" [label="Yaw_1"];
+"Pitch_1" [label="Pitch_1"];
+"Roll_1" [label="Roll_1"];
+"arm_1" [label="arm_1"];
+"rotor_2" [label="rotor_2"];
+"arm_2" [label="arm_2"];
+"rotor_1" [label="rotor_1"];
+"arm_3" [label="arm_3"];
+"rotor_3" [label="rotor_3"];
+"arm_4" [label="arm_4"];
+"rotor_0" [label="rotor_0"];
+node [shape=ellipse, color=blue, fontcolor=blue];
+"base_link" -> "base_joint" [label="xyz: 0 0 0 \nrpy: 0 -0 0"]
+"base_joint" -> "base_link_inertia"
+"base_link" -> "camera_joint" [label="xyz: 0.085 0 0.01 \nrpy: 0 -0 0"]
+"camera_joint" -> "camera_link"
+"base_link" -> "orientation_joint" [label="xyz: 0 0 -0.005 \nrpy: 1.5708 -0 -1.5708"]
+"orientation_joint" -> "orientation_link"
+"orientation_link" -> "base_arm_joint" [label="xyz: 0.011623 -0.033576 -0.423212 \nrpy: 0 -0 0"]
+"base_arm_joint" -> "arm_base_link"
+"arm_base_link" -> "Rev3" [label="xyz: -0.011623 0.033576 0.423212 \nrpy: 0 -0 0"]
+"Rev3" -> "shoulder_2_1"
+"shoulder_2_1" -> "Rev4" [label="xyz: -0.01 -0.035 0 \nrpy: 0 -0 0"]
+"Rev4" -> "first_Link_200_1"
+"first_Link_200_1" -> "Rev5" [label="xyz: -0.02 0 -0.2 \nrpy: 0 -0 0"]
+"Rev5" -> "second_Link_200__1__1"
+"second_Link_200__1__1" -> "Rev6" [label="xyz: 0.01 0 -0.19 \nrpy: 0 -0 0"]
+"Rev6" -> "Yaw_1"
+"Yaw_1" -> "Rev7" [label="xyz: -0.012 0 -0.01 \nrpy: 0 -0 0"]
+"Rev7" -> "Pitch_1"
+"Pitch_1" -> "Rev8" [label="xyz: 0.012 0 -0.032022 \nrpy: 0 -0 0"]
+"Rev8" -> "Roll_1"
+"base_link" -> "tilt_motor_1" [label="xyz: 0 0 0.02 \nrpy: 0 -0 3.1415"]
+"tilt_motor_1" -> "arm_1"
+"arm_1" -> "rotor_2_joint" [label="xyz: -0.175 -0.175 0.035 \nrpy: 0 -0 0"]
+"rotor_2_joint" -> "rotor_2"
+"base_link" -> "tilt_motor_2" [label="xyz: -0 0 0.02 \nrpy: 0 -0 0"]
+"tilt_motor_2" -> "arm_2"
+"arm_2" -> "rotor_1_joint" [label="xyz: -0.175 0.175 0.035 \nrpy: 0 -0 0"]
+"rotor_1_joint" -> "rotor_1"
+"base_link" -> "tilt_motor_3" [label="xyz: 0 0 0.02 \nrpy: 0 -0 3.1415"]
+"tilt_motor_3" -> "arm_3"
+"arm_3" -> "rotor_3_joint" [label="xyz: 0.175 0.175 0.035 \nrpy: 0 -0 0"]
+"rotor_3_joint" -> "rotor_3"
+"base_link" -> "tilt_motor_4" [label="xyz: 0 0 0.02 \nrpy: 0 -0 3.1415"]
+"tilt_motor_4" -> "arm_4"
+"arm_4" -> "rotor_0_joint" [label="xyz: -0.175 0.175 0.035 \nrpy: 0 -0 0"]
+"rotor_0_joint" -> "rotor_0"
+}

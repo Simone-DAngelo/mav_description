@@ -9,17 +9,30 @@
   <arg name="debug" default="false"/>
   <arg name="gui" default="true"/>
   <arg name="paused" default="true"/>
-
+  <arg name="use_sim_time" default="true"/>
+  <arg name="headless" default="false"/>
+  
   <!-- The following line causes gzmsg and gzerr messages to be printed to the console
       (even when Gazebo is started through roslaunch) -->
   <arg name="verbose" default="true"/>
   <!--<arg name="rvizconfig" default="$(find quad_control)/drone.rviz" />-->
-  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+<!--  <include file="$(find gazebo_ros)/launch/empty_world.launch">-->
     <!--<arg name="world_name" value="$(find quad_control)/worlds/$(arg world_name).world" />-->
+<!--    <arg name="debug" value="$(arg debug)" />-->
+<!--    <arg name="paused" value="$(arg paused)" />-->
+<!--    <arg name="gui" value="$(arg gui)" />-->
+<!--    <arg name="verbose" value="$(arg verbose)"/>-->
+<!--  </include>-->
+<!--  -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+<!--    <arg name="world_name" value="$(find mav_description)/worlds/my_world_new_6.world"/>-->
+            <arg name="world_name" value="$(find mav_description)/worlds/tag_world.world"/>
     <arg name="debug" value="$(arg debug)" />
     <arg name="paused" value="$(arg paused)" />
     <arg name="gui" value="$(arg gui)" />
     <arg name="verbose" value="$(arg verbose)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    <arg name="headless" value="$(arg headless)"/>
   </include>
 	  
     <include file="$(find mav_description)/launch/spawn_ndt2_with_arm.launch">
@@ -27,7 +40,7 @@
       <arg name="enable_logging" value="$(arg enable_logging)" />
       <arg name="enable_ground_truth" value="$(arg enable_ground_truth)" />
 
-      <arg name="x" default="0.0"/>
+      <arg name="x" default="0.5"/>
       <arg name="y" default="0.0"/>
       <arg name="z" default="0.35"/>
     </include>
