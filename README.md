@@ -20,6 +20,9 @@ To start the tilting firefly drone use the following launch file:
 To start the NDT tilting drone use the following launch file:
 
        $ roslaunch mav_description ndt2.launch
+To start the NDT tilting drone equipped with the 6 DoF manipulator use the following launch file:
+
+       $ roslaunch mav_description ndt2_with_arm.launch
   
 The NDT drone propeller configuration is reported as follows:
 		  
