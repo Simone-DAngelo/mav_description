@@ -24,7 +24,7 @@ To start the NDT tilting drone equipped with the 6 DoF manipulator use the follo
 
        $ roslaunch mav_description ndt2_with_arm.launch
 NB: remember to add the apriltag textures to gazebo: https://github.com/koide3/gazebo_apriltag.git
-I have modified the first one to be 10cmx10cm
+I have modified the first one to be 10cmx10cm. Please find the modified models here: https://github.com/Simone-DAngelo/model_editor_models.git
 
 The NDT drone propeller configuration is reported as follows:
 		  
