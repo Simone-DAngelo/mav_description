@@ -24,7 +24,7 @@ To start the NDT tilting drone equipped with the 6 DoF manipulator use the follo
 
        $ roslaunch mav_description ndt2_with_arm.launch
 
-NB: don't forget to clone the manipulator model too: [arm_description]([http://wiki.ros.org/rotors_gazebo_plugins](https://github.com/Simone-DAngelo/arm_description.git ))      
+NB: don't forget to clone the manipulator model too: [arm_description](https://github.com/Simone-DAngelo/arm_description.git)      
 
 NB: remember to add the apriltag textures to gazebo: https://github.com/koide3/gazebo_apriltag.git
 I have modified the first one to be 10cmx10cm. Please find the modified models here: https://github.com/Simone-DAngelo/model_editor_models.git
