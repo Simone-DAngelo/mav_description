@@ -26,7 +26,8 @@
 <!--  -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
 <!--    <arg name="world_name" value="$(find mav_description)/worlds/my_world_new_6.world"/>-->
-            <arg name="world_name" value="$(find mav_description)/worlds/tag_world.world"/>
+<!--            <arg name="world_name" value="$(find mav_description)/worlds/tag_world.world"/>-->
+            <arg name="world_name" value="$(find mav_description)/worlds/target_world.world"/>
     <arg name="debug" value="$(arg debug)" />
     <arg name="paused" value="$(arg paused)" />
     <arg name="gui" value="$(arg gui)" />
